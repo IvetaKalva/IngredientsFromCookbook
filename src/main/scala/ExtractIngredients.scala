@@ -38,7 +38,7 @@ object ExtractIngredients extends App {
   }) //get rid of unnecessary uppercase lines that are not recipe titles, the titles stored in the array are separated by blank lines for better readability in the .txt file
   thirdTextCleaning.foreach(println)
 
-  val savePath = "src/resources/Recipes_titles_and_ingredients_from_the_cookbook.txt"
+  val savePath = "src/result/Recipes_titles_and_ingredients_from_the_cookbook.txt"
   def saveTitlesAndIngredients(thirdTextCleaning: Array[String], destinationPath: String, separator: String = "\n"): Unit = {
     val pw = new PrintWriter(new File(destinationPath))
     val txt = thirdTextCleaning.mkString(separator)
