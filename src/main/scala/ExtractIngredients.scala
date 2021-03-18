@@ -8,6 +8,18 @@ object ExtractIngredients extends App {
   val txtLines = bufferedSource.getLines.toArray
   bufferedSource.close()
 
+
+  val lastSegment = url.split("/").last
+  val relativeSavePath = s"src/resources/ $lastSegment"
+  def saveBook(txtLines: Array[String], destinationPath: String, separator: String = "\n"): Unit = {
+    val pw = new PrintWriter(new File(destinationPath))
+    val txt = txtLines.mkString(separator)
+    pw.write(txt)
+    pw.close()
+  }
+  saveBook(txtLines, relativeSavePath)
+
+
   val firstTextCleaning = txtLines.slice(0, txtLines.indexOf("INDEX TO RECIPES")) //remove everything after "INDEX TO RECIPES"
     .filterNot(line => line.isEmpty) //discard empty lines
     .collect {
